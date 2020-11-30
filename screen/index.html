@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Screen share in html5 video player</title>
+</head>
+<body>
+<video id="video" controls>
+</video>
+</body>
+<script>
+    var video = document.getElementById('video');
+    async function startCapture(displayMediaOptions) {
+        let captureStream = null;
+        try {
+            captureStream = await navigator.mediaDevices.getDisplayMedia(displayMediaOptions);
+            console.log('Working');
+            video.srcObject = captureStream;
+            video.play();
+        } catch(err) {
+            console.error("Error: " + err);
+        }
+        return captureStream;
+    }
+
+    startCapture()
+</script>
+</html>
