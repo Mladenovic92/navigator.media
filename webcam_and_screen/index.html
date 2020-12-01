@@ -8,15 +8,29 @@
     <title>Webcam and screen preview</title>
 </head>
 <body>
-<video id="video" controls></video>
+
+<style>
+    .voice-on{
+        border: green 5px; border-style: solid;
+    }
+</style>
+<video  id="video" controls></video>
+<p id="audio-value"></p>
+<p id="is-speaking"></p>
+
 <button id="webcam">Webcam</button>
 <button id="screen">Screen</button>
 <button id="stopAll">Stop Stream</button>
 </body>
+<script src="../src/mic.js"></script>
 <script>
     var webcam = false;
     var screen = false;
     var stream = false;
+    var audioContext = new (window.AudioContext || window.webkitAudioContext)()
+    var meter = null
+    var mediaStreamSource = null
+
     var video = document.getElementById('video')
     function clearStream() {
         if (stream !== false) {
@@ -65,8 +79,16 @@
         try {
             clearStream();
 
-            navigator.mediaDevices.getUserMedia({video: true, audio: true}).then((webcamStream) => {
+            navigator.mediaDevices.getUserMedia(
+                {
+                    video: true,
+                    audio: true
+                }).then((webcamStream) => {
                 stream = webcamStream;
+                mediaStreamSource = audioContext.createMediaStreamSource(stream)
+                meter = createAudioMeter(audioContext)
+                mediaStreamSource.connect(meter)
+
                 video.srcObject = stream;
                 video.play();
 
