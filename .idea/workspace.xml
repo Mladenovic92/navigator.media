@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5aefea40-6f5d-4d88-a995-f154c62c7889" name="Default Changelist" comment="" />
+    <list default="true" id="5aefea40-6f5d-4d88-a995-f154c62c7889" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/webcam_and_screen/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -32,7 +35,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1606756075161</updated>
-      <workItem from="1606756076477" duration="1483000" />
+      <workItem from="1606756076477" duration="2307000" />
+      <workItem from="1606817268078" duration="513000" />
     </task>
     <servers />
   </component>
@@ -49,5 +53,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
