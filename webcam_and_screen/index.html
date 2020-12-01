@@ -11,11 +11,24 @@
 <video id="video" controls></video>
 <button id="webcam">Webcam</button>
 <button id="screen">Screen</button>
+<button id="stopAll">Stop Stream</button>
 </body>
 <script>
     var webcam = false;
     var screen = false;
-    var stream;
+    var stream = false;
+
+    function clearStream() {
+        if (stream !== false) {
+            let tracks = stream.getTracks();
+            tracks.forEach(function (track) {
+                track.stop();
+            });
+        }
+        stream = false;
+    }
+
+    document.getElementById('stopAll').addEventListener('click', clearStream);
     document.getElementById('webcam').addEventListener('click', function () {
         webcam = true;
         screen = false;
@@ -28,9 +41,11 @@
         startScreenCapture();
 
     })
+
     async function startScreenCapture(displayMediaOptions) {
         let captureStream = null;
         try {
+            clearStream();
             captureStream = await navigator.mediaDevices.getDisplayMedia(displayMediaOptions);
             console.log('Working');
             stream = captureStream;
@@ -45,7 +60,9 @@
     async function startWebcamCapture() {
         let captureStream = null;
         try {
-            navigator.mediaDevices.getUserMedia({video:true, audio: true}).then((webcamStream) => {
+            clearStream();
+
+            navigator.mediaDevices.getUserMedia({video: true, audio: true}).then((webcamStream) => {
                 stream = webcamStream;
                 video.srcObject = stream;
                 video.play();
