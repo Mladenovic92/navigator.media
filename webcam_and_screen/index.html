@@ -17,12 +17,15 @@
     var webcam = false;
     var screen = false;
     var stream = false;
-
+    var video = document.getElementById('video')
     function clearStream() {
         if (stream !== false) {
+            video.pause();
+
             let tracks = stream.getTracks();
             tracks.forEach(function (track) {
                 track.stop();
+
             });
         }
         stream = false;
